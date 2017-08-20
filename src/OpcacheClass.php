@@ -87,6 +87,10 @@ class OpcacheClass
             base_path('vendor/laravel/framework'),
         ]);
 
+        if (config('opcache.extras')) {
+            $files = array_merge($files, File::allFiles(config('opcache.extras')));
+        }
+        
         $files = collect($files);
 
         // filter on php extension
